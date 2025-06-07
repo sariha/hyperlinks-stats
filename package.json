@@ -1,0 +1,28 @@
+{
+  "name": "hyperlinks-stats",
+  "version": "1.0.0",
+  "description": "Above the fold links statistics for your WordPress.",
+  "main": "index.js",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production wp-scripts build front.js --source-path=assets",
+    "build:dev": "wp-scripts build front.js --source-path=assets",
+    "start": "wp-scripts start front.js --source-path=assets",
+	"composer": "wp-env run cli --env-cwd=wp-content/plugins/hyperlinks-stats composer"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sariha/hyperlinks-stats.git"
+  },
+  "keywords": [],
+  "author": "Sariha Chabert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sariha/hyperlinks-stats/issues"
+  },
+  "homepage": "https://github.com/sariha/hyperlinks-stats#readme",
+  "devDependencies": {
+    "@wordpress/scripts": "^30.18.0",
+    "cross-env": "^7.0.3",
+    "webpack-manifest-plugin": "^5.0.1"
+  }
+}

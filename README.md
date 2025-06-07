@@ -1,23 +1,24 @@
-Repository template for our packages
+# Hyperlink
 
-# Usage
-When creating a new repository for a package or a plugin, select this repository as the template. It will initialize the new repository with all the structure & files contained in the template.
+Above the fold links statistics for your WordPress.
 
-# Get started
-- Have a mysql DB ready and a user.
-- Have `svn` installed.
-- Run `composer install`
-- Run `bash bin/install-wp-tests.sh wordpress_test mysql_user mysql_password localhost latest`
-- Run `composer run-tests`
-- Run `composer phpcs`
-- You can install the plugin on your website.
+# Get started with development
+Use [@wordpress/env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) start to start a local WordPress environment
+- Install dependencies with `npm install`
+- Compile assets with `npm run build` or `npm start`
+
+- Run `composer install` to install PHP dependencies
+- Start with `wp-env start` -> this will create a local WordPress environment with the plugin activated, an error will occur because composer is not installed yet.
+- Run `npm run composer run-tests` will run the tests
+- Run `npm run composer phpcs`
+
+Finally, navigate to http://localhost:8888 in your web browser to see WordPress running with the local WordPress plugin or theme running and activated. Default login credentials are username: admin password: password.
 
 # Content
 * `bin/install-wp-tests.sh`: installer for WordPress tests suite
 * `.editorconfig`: config file for your IDE to follow our coding standards
 * `.gitattributes`: list of directories & files excluded from export
 * `.gitignore`: list of directories & files excluded from versioning
-* `.travis.yml`: Travis-CI configuration file
 * `composer.json`: Base composer file to customize for the project
 * `LICENSE`: License file using GPLv3
 * `phpcs.xml`: Base PHP Code Sniffer configuration file to customize for the project

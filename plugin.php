@@ -2,16 +2,15 @@
 /**
  * Plugin Template
  *
- * @package     TO FILL
- * @author      Mathieu Lamiot
- * @copyright   TO FILL
+ * @package     hyperlinks-stats
+ * @author      Sariha Chabert
  * @license     GPL-2.0-or-later
  *
  * @wordpress-plugin
- * Plugin Name: TO FILL
- * Version:     TO FILL
- * Description: TO FILL
- * Author:      Mathieu Lamiot
+ * Plugin Name: Hyperlinks Stats
+ * Version: 0.1.0
+ * Description: A plugin to track hyperlinks in WordPress.
+ * Author: Sariha Chabert <sariha.chabert@gmail.com>
  */
 
 namespace ROCKET_WP_CRAWLER;

@@ -4,7 +4,7 @@
  *
  * @package     TO FILL
  * @since       TO FILL
- * @author      Mathieu Lamiot
+ * @author      Sariha Chabert
  * @license     GPL-2.0-or-later
  */
 

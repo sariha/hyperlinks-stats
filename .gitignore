@@ -2,3 +2,8 @@
 /Tests/env/local/
 *.cache
 composer.lock
+node_modules
+/.idea
+/.vscode
+/build
+package-lock.json
