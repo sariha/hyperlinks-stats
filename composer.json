@@ -12,8 +12,9 @@
         }
     ],
     "require"       : {
-        "php" : ">=7.3"
-    },
+        "php" : ">=7.3",
+		"ext-json": "*"
+	},
     "require-dev":{
         "raveren/kint": "~1.0",
         "filp/whoops": "~2.0",
@@ -25,7 +26,11 @@
 		"wp-coding-standards/wpcs": "dev-develop",
 		"wp-media/phpunit": "^3"
     },
-    "autoload": {},
+    "autoload": {
+		"psr-4": {
+			"ROCKET_HYPERLINKS_STATS\\": "./src"
+		}
+	},
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"

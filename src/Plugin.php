@@ -12,7 +12,7 @@ namespace ROCKET_HYPERLINKS_STATS;
 /**
  * Main plugin class. It manages initialization, install, and activations.
  */
-class Rocket_Hyperlinks_Stats_Plugin_Class {
+class Plugin {
 	/**
 	 * Manages plugin initialization
 	 *

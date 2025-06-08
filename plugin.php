@@ -16,13 +16,13 @@
 namespace ROCKET_HYPERLINKS_STATS;
 
 define( 'ROCKET_HYPERLINKS_STATS_PLUGIN', __FILE__ ); // Filename of the plugin, including the file.
+define( 'ROCKET_HYPERLINKS_STATS_PLUGIN_DIR', trailingslashit( __DIR__ ) ); // Directory of the plugin.
 
 if ( ! defined( 'ABSPATH' ) ) { // If WordPress is not loaded.
 	exit( 'WordPress not loaded. Can not load the plugin' );
 }
 
 // Load the dependencies installed through composer.
-require_once __DIR__ . '/src/plugin.php';
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/src/support/exceptions.php';
 
@@ -33,10 +33,25 @@ require_once __DIR__ . '/src/support/exceptions.php';
  * @return void
  */
 function rocket_hyperlinks_stats_plugin_init() {
-	new Rocket_Hyperlinks_Stats_Plugin_Class();
+	new plugin();
 }
 add_action( 'plugins_loaded', __NAMESPACE__ . '\rocket_hyperlinks_stats_plugin_init' );
 
-register_activation_hook( __FILE__, array( __NAMESPACE__ . '\Rocket_Hyperlinks_Stats_Plugin_Class', 'rhs_activate' ) );
+/**
+ * Load the plugin assets.
+ *
+ * This action is triggered on the 'init' hook to ensure that the plugin assets are loaded after WordPress has initialized.
+ */
+function rocket_hyperlinks_stats_assets() {
+	// Load the plugin assets.
+	new Assets();
+}
 
-register_uninstall_hook( __FILE__, array( __NAMESPACE__ . '\Rocket_Hyperlinks_Stats_Plugin_Class', 'rhs_uninstall' ) );
+add_action(
+	'init',
+	__NAMESPACE__ . '\rocket_hyperlinks_stats_assets'
+);
+
+register_activation_hook( __FILE__, array( __NAMESPACE__ . '\Plugin', 'rhs_activate' ) );
+
+register_uninstall_hook( __FILE__, array( __NAMESPACE__ . '\Plugin', 'rhs_uninstall' ) );
