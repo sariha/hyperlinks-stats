@@ -2,18 +2,17 @@
 /**
  * Plugin main class
  *
- * @package     TO FILL
- * @since       TO FILL
+ * @package     hyperlinks-stats
  * @author      Sariha Chabert
  * @license     GPL-2.0-or-later
  */
 
-namespace ROCKET_WP_CRAWLER;
+namespace ROCKET_HYPERLINKS_STATS;
 
 /**
  * Main plugin class. It manages initialization, install, and activations.
  */
-class Rocket_Wpc_Plugin_Class {
+class Rocket_Hyperlinks_Stats_Plugin_Class {
 	/**
 	 * Manages plugin initialization
 	 *
@@ -22,7 +21,7 @@ class Rocket_Wpc_Plugin_Class {
 	public function __construct() {
 
 		// Register plugin lifecycle hooks.
-		register_deactivation_hook( ROCKET_CRWL_PLUGIN_FILENAME, array( $this, 'wpc_deactivate' ) );
+		register_deactivation_hook( ROCKET_HYPERLINKS_STATS_PLUGIN, array( $this, 'rhs_deactivate' ) );
 	}
 
 	/**
@@ -30,7 +29,7 @@ class Rocket_Wpc_Plugin_Class {
 	 *
 	 * @return void
 	 */
-	public static function wpc_activate() {
+	public static function rhs_activate() {
 		// Security checks.
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			return;
@@ -44,7 +43,7 @@ class Rocket_Wpc_Plugin_Class {
 	 *
 	 * @return void
 	 */
-	public function wpc_deactivate() {
+	public function rhs_deactivate() {
 		// Security checks.
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			return;
@@ -58,7 +57,7 @@ class Rocket_Wpc_Plugin_Class {
 	 *
 	 * @return void
 	 */
-	public static function wpc_uninstall() {
+	public static function rhs_uninstall() {
 
 		// Security checks.
 		if ( ! current_user_can( 'activate_plugins' ) ) {

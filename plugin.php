@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Template
+ * Plugin Name: Hyperlinks Stats
  *
  * @package     hyperlinks-stats
  * @author      Sariha Chabert
@@ -13,9 +13,9 @@
  * Author: Sariha Chabert <sariha.chabert@gmail.com>
  */
 
-namespace ROCKET_WP_CRAWLER;
+namespace ROCKET_HYPERLINKS_STATS;
 
-define( 'ROCKET_CRWL_PLUGIN_FILENAME', __FILE__ ); // Filename of the plugin, including the file.
+define( 'ROCKET_HYPERLINKS_STATS_PLUGIN', __FILE__ ); // Filename of the plugin, including the file.
 
 if ( ! defined( 'ABSPATH' ) ) { // If WordPress is not loaded.
 	exit( 'WordPress not loaded. Can not load the plugin' );
@@ -32,10 +32,11 @@ require_once __DIR__ . '/src/support/exceptions.php';
  *
  * @return void
  */
-function wpc_crawler_plugin_init() {
-	$wpc_crawler_plugin = new Rocket_Wpc_Plugin_Class();
+function rocket_hyperlinks_stats_plugin_init() {
+	new Rocket_Hyperlinks_Stats_Plugin_Class();
 }
-add_action( 'plugins_loaded', __NAMESPACE__ . '\wpc_crawler_plugin_init' );
+add_action( 'plugins_loaded', __NAMESPACE__ . '\rocket_hyperlinks_stats_plugin_init' );
 
-register_activation_hook( __FILE__, __NAMESPACE__ . '\Rocket_Wpc_Plugin_Class::wpc_activate' );
-register_uninstall_hook( __FILE__, __NAMESPACE__ . '\Rocket_Wpc_Plugin_Class::wpc_uninstall' );
+register_activation_hook( __FILE__, array( __NAMESPACE__ . '\Rocket_Hyperlinks_Stats_Plugin_Class', 'rhs_activate' ) );
+
+register_uninstall_hook( __FILE__, array( __NAMESPACE__ . '\Rocket_Hyperlinks_Stats_Plugin_Class', 'rhs_uninstall' ) );

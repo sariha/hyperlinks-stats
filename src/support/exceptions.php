@@ -2,13 +2,12 @@
 /**
  *  Exception handling
  *
- * @package     TO FILL
- * @since       TO FILL
- * @author      Mathieu Lamiot
+ * @package     Hyperlinks Stats
+ * @author      Sariha Chabert
  * @license     GPL-2.0-or-later
  */
 
-namespace ROCKET_WP_CRAWLER;
+namespace ROCKET_HYPERLINKS_STATS;
 
 // Automatically added when writing the WHOOPS section below to find the whoops functions.
 use Whoops\Handler\PrettyPageHandler;
