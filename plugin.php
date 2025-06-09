@@ -8,7 +8,10 @@
  *
  * @wordpress-plugin
  * Plugin Name: Hyperlinks Stats
+ * Plugin URI: https://github.com/sariha/hyperlinks-stats
  * Version: 0.1.0
+ * Requires at least: 6.0
+ * Requires PHP: 7.3
  * Description: A plugin to track hyperlinks in WordPress.
  * Author: Sariha Chabert <sariha.chabert@gmail.com>
  */
