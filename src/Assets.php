@@ -41,6 +41,7 @@ class Assets {
 				array(
 					'homeUrl' => home_url(),
 					'restUrl' => esc_url_raw( rest_url( 'hyperlinks-stats/v1/' ) ),
+					'nonce'   => wp_create_nonce( 'wp_rest' ),
 				)
 			);
 		}

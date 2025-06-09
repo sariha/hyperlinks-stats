@@ -9,7 +9,7 @@ Use [@wordpress/env](https://developer.wordpress.org/block-editor/reference-guid
 
 - Run `composer install` to install PHP dependencies
 - Start with `wp-env start` -> this will create a local WordPress environment with the plugin activated, an error will occur because composer is not installed yet.
-- Run `npm run composer run-tests` will run the tests
+- Run `npm run run-tests` will run the composer tests
 - Run `npm run composer phpcs`
 
 Finally, navigate to http://localhost:8888 in your web browser to see WordPress running with the local WordPress plugin or theme running and activated. Default login credentials are username: admin password: password.

@@ -51,6 +51,15 @@ domReady( () => {
 
 		const windowSize = getWindowSize();
 
+		const nonce = window.front.nonce || '';
+
+		if ( !nonce ) {
+			console.error('Nonce is not defined. Cannot send data to server.');
+			return;
+		}
+
+		apiFetch.use( apiFetch.createNonceMiddleware( nonce ) );
+
 		//once we got the visible links, we can send them to the server
 		//using the WordPress Fetch API
 		apiFetch({

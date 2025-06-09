@@ -45,9 +45,12 @@ class Rest {
 			$this->namespace,
 			'/stats',
 			array(
-				'methods'  => 'POST',
-				'callback' => function ( $request ) {
+				'methods'             => 'POST',
+				'callback'            => function ( $request ) {
 					return $this->rhs_post_stats( $request );
+				},
+				'permission_callback' => function ( $request ) {
+					return wp_verify_nonce( $request->get_header( 'X-WP-Nonce' ), 'wp_rest' );
 				},
 			)
 		);

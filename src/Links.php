@@ -82,7 +82,7 @@ class Links {
 		global $wpdb;
 
 		$defaults = array(
-			'limit'  => 1000,
+			'limit'  => 120,
 			'offset' => 0,
 		);
 
