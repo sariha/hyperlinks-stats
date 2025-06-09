@@ -36,6 +36,8 @@ function rocket_hyperlinks_stats_plugin_init() {
 	new plugin();
 }
 add_action( 'plugins_loaded', __NAMESPACE__ . '\rocket_hyperlinks_stats_plugin_init' );
+register_activation_hook( __FILE__, array( __NAMESPACE__ . '\Plugin', 'rhs_activate' ) );
+register_uninstall_hook( __FILE__, array( __NAMESPACE__ . '\Plugin', 'rhs_uninstall' ) );
 
 /**
  * Load the plugin assets.
@@ -52,6 +54,17 @@ add_action(
 	__NAMESPACE__ . '\rocket_hyperlinks_stats_assets'
 );
 
-register_activation_hook( __FILE__, array( __NAMESPACE__ . '\Plugin', 'rhs_activate' ) );
+/**
+ * Load the plugin REST API.
+ *
+ * This action is triggered on the 'init' hook to ensure that the plugin REST API is loaded after WordPress has initialized.
+ */
+function rocket_hyperlinks_stats_rest() {
+	// Load the plugin REST API.
+	new Rest();
+}
 
-register_uninstall_hook( __FILE__, array( __NAMESPACE__ . '\Plugin', 'rhs_uninstall' ) );
+add_action(
+	'rest_api_init',
+	__NAMESPACE__ . '\rocket_hyperlinks_stats_rest'
+);

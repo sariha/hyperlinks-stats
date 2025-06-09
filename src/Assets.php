@@ -36,7 +36,13 @@ class Assets {
 
 		// Enqueue in frontpage only.
 		if ( is_front_page() ) {
-			$this->enqueue_script( 'front.js' );
+			$this->enqueue_script(
+				'front.js',
+				array(
+					'homeUrl' => home_url(),
+					'restUrl' => esc_url_raw( rest_url( 'hyperlinks-stats/v1/' ) ),
+				)
+			);
 		}
 	}
 
@@ -89,7 +95,7 @@ class Assets {
 			if ( ! empty( $data ) ) {
 				wp_localize_script(
 					'hyperlinks-stats-' . $filename,
-					'hyperlinksStats',
+					$filename,
 					$data
 				);
 			}
@@ -125,7 +131,7 @@ class Assets {
 	 *
 	 * @return array An associative array containing 'filename', 'js_file', and 'php_file'.
 	 */
-	private function get_file_names( string $js_file ): array {
+	public function get_file_names( string $js_file ): array {
 
 		$filename = str_replace( '.js', '', $js_file );
 		$php_file = $filename . '.php';

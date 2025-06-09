@@ -36,6 +36,9 @@ class Plugin {
 		}
 		$plugin = isset( $_REQUEST['plugin'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['plugin'] ) ) : '';
 		check_admin_referer( "activate-plugin_{$plugin}" );
+
+		// Create the database table for hyperlinks stats.
+		Links::create_table();
 	}
 
 	/**

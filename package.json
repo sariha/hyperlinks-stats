@@ -7,7 +7,8 @@
     "build": "cross-env NODE_ENV=production wp-scripts build front.js --source-path=assets",
     "build:dev": "wp-scripts build front.js --source-path=assets",
     "start": "wp-scripts start front.js --source-path=assets",
-    "composer": "wp-env run cli --env-cwd=wp-content/plugins/hyperlinks-stats composer"
+    "composer": "wp-env run cli --env-cwd=wp-content/plugins/hyperlinks-stats composer",
+    "run-tests": "wp-env run tests-cli --env-cwd=wp-content/plugins/hyperlinks-stats composer run-tests"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/sariha/hyperlinks-stats#readme",
   "devDependencies": {
+    "@wordpress/api-fetch": "^7.25.0",
     "@wordpress/dom-ready": "^4.25.0",
     "@wordpress/scripts": "^30.18.0",
     "cross-env": "^7.0.3",
