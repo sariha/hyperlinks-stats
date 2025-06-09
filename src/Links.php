@@ -81,23 +81,20 @@ class Links {
 	public static function get_links( array $args = array() ): array {
 		global $wpdb;
 
-		$table_name = $wpdb->prefix . 'hyperlinks_stats';
-
 		$defaults = array(
-			'limit'   => 100,
-			'offset'  => 0,
-			'orderby' => 'date_created',
-			'order'   => 'DESC',
+			'limit'  => 1000,
+			'offset' => 0,
 		);
 
 		$args = wp_parse_args( $args, $defaults );
 
 		return $wpdb->get_results(
 			$wpdb->prepare(
-				'SELECT * FROM %s ORDER BY %s %s LIMIT %d OFFSET %d',
-				$table_name,
-				$args['orderby'],
-				$args['order'],
+				"SELECT url, COUNT(*) as count
+            FROM {$wpdb->prefix}hyperlinks_stats
+            GROUP BY url
+            ORDER BY count DESC
+            LIMIT %d OFFSET %d",
 				$args['limit'],
 				$args['offset']
 			)
@@ -108,17 +105,15 @@ class Links {
 	 * Removes links older than the specified number of days.
 	 *
 	 * @param int $days Number of days after which to remove links.
+	 *
 	 * @return int|false Number of rows affected, or false on error.
 	 */
-	public static function remove_outdated_links( $days = 7 ) {
+	public static function remove_outdated_links( int $days = 7 ) {
 		global $wpdb;
-
-		$table_name = $wpdb->prefix . 'hyperlinks_stats';
 
 		return $wpdb->query(
 			$wpdb->prepare(
-				'DELETE FROM %s WHERE date_created < DATE_SUB(NOW(), INTERVAL %d DAY)',
-				$table_name,
+				'DELETE FROM ${wpdb->prefix}hyperlinks_stats WHERE date_created < DATE_SUB(NOW(), INTERVAL %d DAY)',
 				$days
 			)
 		);

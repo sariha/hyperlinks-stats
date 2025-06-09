@@ -68,3 +68,18 @@ add_action(
 	'rest_api_init',
 	__NAMESPACE__ . '\rocket_hyperlinks_stats_rest'
 );
+
+
+/**
+ * Cleans up outdated hyperlinks stats daily.
+ * This function is scheduled to run daily to remove outdated links from the database.
+ *
+ * @return void
+ */
+function rocket_hyperlinks_stats_daily_cleanup() {
+	Links::remove_outdated_links();
+}
+add_action(
+	'hyperlinks_stats_daily_cleanup',
+	__NAMESPACE__ . '\rocket_hyperlinks_stats_daily_cleanup'
+);
