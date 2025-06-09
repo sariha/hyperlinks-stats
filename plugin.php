@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Template
+ * Plugin Name: Hyperlinks Stats
  *
  * @package     hyperlinks-stats
  * @author      Sariha Chabert
@@ -13,16 +13,16 @@
  * Author: Sariha Chabert <sariha.chabert@gmail.com>
  */
 
-namespace ROCKET_WP_CRAWLER;
+namespace ROCKET_HYPERLINKS_STATS;
 
-define( 'ROCKET_CRWL_PLUGIN_FILENAME', __FILE__ ); // Filename of the plugin, including the file.
+define( 'ROCKET_HYPERLINKS_STATS_PLUGIN', __FILE__ ); // Filename of the plugin, including the file.
+define( 'ROCKET_HYPERLINKS_STATS_PLUGIN_DIR', trailingslashit( __DIR__ ) ); // Directory of the plugin.
 
 if ( ! defined( 'ABSPATH' ) ) { // If WordPress is not loaded.
 	exit( 'WordPress not loaded. Can not load the plugin' );
 }
 
 // Load the dependencies installed through composer.
-require_once __DIR__ . '/src/plugin.php';
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/src/support/exceptions.php';
 
@@ -32,10 +32,54 @@ require_once __DIR__ . '/src/support/exceptions.php';
  *
  * @return void
  */
-function wpc_crawler_plugin_init() {
-	$wpc_crawler_plugin = new Rocket_Wpc_Plugin_Class();
+function rocket_hyperlinks_stats_plugin_init() {
+	new plugin();
 }
-add_action( 'plugins_loaded', __NAMESPACE__ . '\wpc_crawler_plugin_init' );
+add_action( 'plugins_loaded', __NAMESPACE__ . '\rocket_hyperlinks_stats_plugin_init' );
+register_activation_hook( __FILE__, array( __NAMESPACE__ . '\Plugin', 'rhs_activate' ) );
+register_uninstall_hook( __FILE__, array( __NAMESPACE__ . '\Plugin', 'rhs_uninstall' ) );
 
-register_activation_hook( __FILE__, __NAMESPACE__ . '\Rocket_Wpc_Plugin_Class::wpc_activate' );
-register_uninstall_hook( __FILE__, __NAMESPACE__ . '\Rocket_Wpc_Plugin_Class::wpc_uninstall' );
+/**
+ * Load the plugin assets.
+ *
+ * This action is triggered on the 'init' hook to ensure that the plugin assets are loaded after WordPress has initialized.
+ */
+function rocket_hyperlinks_stats_assets() {
+	// Load the plugin assets.
+	new Assets();
+}
+
+add_action(
+	'init',
+	__NAMESPACE__ . '\rocket_hyperlinks_stats_assets'
+);
+
+/**
+ * Load the plugin REST API.
+ *
+ * This action is triggered on the 'init' hook to ensure that the plugin REST API is loaded after WordPress has initialized.
+ */
+function rocket_hyperlinks_stats_rest() {
+	// Load the plugin REST API.
+	new Rest();
+}
+
+add_action(
+	'rest_api_init',
+	__NAMESPACE__ . '\rocket_hyperlinks_stats_rest'
+);
+
+
+/**
+ * Cleans up outdated hyperlinks stats daily.
+ * This function is scheduled to run daily to remove outdated links from the database.
+ *
+ * @return void
+ */
+function rocket_hyperlinks_stats_daily_cleanup() {
+	Links::remove_outdated_links();
+}
+add_action(
+	'hyperlinks_stats_daily_cleanup',
+	__NAMESPACE__ . '\rocket_hyperlinks_stats_daily_cleanup'
+);
