@@ -40,7 +40,7 @@ class Assets {
 				'front.js',
 				array(
 					'homeUrl' => home_url(),
-					'restUrl' => esc_url_raw( rest_url( 'hyperlinks-stats/v1/' ) ),
+					'restUrl' => '/hyperlinks-stats/v1/',
 					'nonce'   => wp_create_nonce( 'wp_rest' ),
 				)
 			);
@@ -72,7 +72,7 @@ class Assets {
 			$js_file = 'build/' . basename( $manifest['files'][ $js_file ] );
 		}
 
-		$assets_file = "build/${filename}.asset.php";
+		$assets_file = "build/{$filename}.asset.php";
 		if ( isset( $manifest['files'][ $php_file ] ) && ! empty( $manifest ) ) {
 			$assets_file = 'build/' . basename( $manifest['files'][ $php_file ] );
 		}

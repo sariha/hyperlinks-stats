@@ -113,7 +113,7 @@ class Links {
 
 		return $wpdb->query(
 			$wpdb->prepare(
-				'DELETE FROM ${wpdb->prefix}hyperlinks_stats WHERE date_created < DATE_SUB(NOW(), INTERVAL %d DAY)',
+				"DELETE FROM {$wpdb->prefix}hyperlinks_stats WHERE date_created < DATE_SUB(NOW(), INTERVAL %d DAY)",
 				$days
 			)
 		);
